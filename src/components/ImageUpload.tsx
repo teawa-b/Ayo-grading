@@ -34,12 +34,12 @@ export default function ImageUpload({ label, image, onImageChange }: ImageUpload
   }
 
   return (
-    <div className="flex flex-col">
-      <h2 className="text-xl font-semibold text-gray-700 mb-4">{label}</h2>
-      
+    <div>
+      <p className="text-xs font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-wider mb-2">{label}</p>
+
       <div
         onClick={handleClick}
-        className="relative border-2 border-dashed border-gray-300 rounded-lg bg-white hover:border-blue-500 hover:bg-blue-50 transition-colors cursor-pointer aspect-square flex items-center justify-center overflow-hidden"
+        className="group relative rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors cursor-pointer aspect-[4/3] flex items-center justify-center overflow-hidden"
       >
         {image ? (
           <>
@@ -53,47 +53,28 @@ export default function ImageUpload({ label, image, onImageChange }: ImageUpload
                 e.stopPropagation()
                 handleRemove()
               }}
-              className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-2 shadow-lg transition-colors"
+              className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-neutral-900/80 dark:bg-white/90 text-white dark:text-neutral-900 opacity-0 group-hover:opacity-100 transition-opacity"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </>
         ) : (
-          <div className="text-center p-6">
-            <svg
-              className="mx-auto h-12 w-12 text-gray-400"
-              stroke="currentColor"
-              fill="none"
-              viewBox="0 0 48 48"
-            >
-              <path
-                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <p className="mt-4 text-sm text-gray-600">
-              Click to upload an image
-            </p>
-            <p className="mt-1 text-xs text-gray-500">
-              PNG, JPG, GIF up to 10MB
-            </p>
+          <div className="flex flex-col items-center gap-3 p-6">
+            <div className="w-10 h-10 rounded-full border border-dashed border-neutral-300 dark:border-neutral-700 flex items-center justify-center">
+              <svg className="w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+            </div>
+            <div className="text-center">
+              <p className="text-sm text-neutral-600 dark:text-neutral-400">Drop image here</p>
+              <p className="text-xs text-neutral-400 dark:text-neutral-500 mt-0.5">or click to browse</p>
+            </div>
           </div>
         )}
       </div>
-      
+
       <input
         ref={inputRef}
         type="file"
